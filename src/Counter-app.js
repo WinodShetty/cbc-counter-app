@@ -1,23 +1,35 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 
-function CounterApp(){
+class CounterApp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            counter: 0
+        };
+    }
 
-    const[counter, setCounter] = useState(0)
+    increment = () => {
+        this.setState(prevState => ({
+            counter: prevState.counter + 1
+        }));
+    };
 
-    const incriment = () => setCounter((prevState) => prevState + 1 );
-    const decriment = () => setCounter((prevState) => prevState - 1 );
+    decrement = () => {
+        this.setState(prevState => ({
+            counter: prevState.counter - 1
+        }));
+    };
 
-        
-
-    
-    return(
-        <div>
-            <h1>Counter App</h1>
-            <h6>Count: {counter}</h6>
-            <button onClick={incriment}>Increment</button>
-            <button onClick={decriment}>Decrement</button>
-        </div>
-    )
+    render() {
+        return (
+            <div>
+                <h1>Counter App</h1>
+                <h6>Count: {this.state.counter}</h6>
+                <button onClick={this.increment}>Increment</button>
+                <button onClick={this.decrement}>Decrement</button>
+            </div>
+        );
+    }
 }
 
 export default CounterApp;
